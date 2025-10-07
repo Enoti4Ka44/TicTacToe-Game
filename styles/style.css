@@ -1,4 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
+
+:root {
+  --red: #ff5d5d;
+  --blue: #5d98ff;
+}
 
 * {
   box-sizing: border-box;
@@ -7,12 +12,35 @@
 }
 
 body {
-  font-family: "Nunito", sans-serif;
+  font-family: "Nunito Sans", sans-serif;
+}
+
+.blue {
+  color: var(--blue);
+}
+
+.red {
+  color: var(--red);
 }
 
 .container {
-  width: 36rem;
-  margin: 80px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.title {
+  font-size: 48px;
+  font-size: 700;
+  color: var(--red);
+}
+
+.title span {
+  color: var(--blue);
+}
+
+.grid-container {
+  width: 30rem;
+  margin: 40px auto;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 17px 50px;
   border-radius: 10px;
   overflow: hidden;
@@ -34,7 +62,7 @@ body {
   justify-content: center;
   align-items: center;
 
-  font-size: 98px;
+  font-size: 84px;
   font-weight: 700;
 
   background-color: #fff;
@@ -47,12 +75,17 @@ body {
   background-color: rgb(199, 199, 199);
 }
 
+.wins-count {
+  font-size: 28px;
+  font-weight: 700;
+}
+
 @media (max-width: 780px) {
-  .container {
+  .grid-container {
     width: 20rem;
   }
 
   .square {
-    font-size: 68px;
+    font-size: 58px;
   }
 }
