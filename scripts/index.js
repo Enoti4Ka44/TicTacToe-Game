@@ -37,6 +37,21 @@ const handleMakeMove = (e) => {
     
 }
 
+//Reset the game
+const handleResetGame = () => {
+    squareList.forEach((square) => {
+        square.innerHTML = ""
+    })
+    
+    board = [
+        ["", "", ""],
+        ["", "", ""],
+        ["", "", ""],
+    ]
+}
+btnReset.addEventListener('click', handleResetGame)    
+
+
 squareList.forEach((square) => {
     square.addEventListener('click', (e) => handleMakeMove(e.target))
 })
