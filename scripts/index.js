@@ -1,5 +1,5 @@
 let squareList = document.querySelectorAll('.square')
-let btnReset = document.querySelector(`#btnReset`)
+let btnClear = document.querySelector(`#btnClear`)
 let boardNode = document.querySelector(`#board`)
 let playerBlueCount = document.querySelector(`#playerBlue`)
 let playerRedCount = document.querySelector(`#playerRed`)
@@ -39,7 +39,7 @@ const handleMakeMove = (e) => {
 }
 
 //Reset the game
-const handleResetGame = () => {
+const handleClearBoard = () => {
     squareList.forEach((square) => {
         square.innerHTML = "",
         square.classList.remove('blue'),
@@ -52,8 +52,8 @@ const handleResetGame = () => {
         ["", "", ""],
     ]
 
-    
     boardNode.classList.remove('disabled')
+    btnClear.classList.remove('animation-pulse')
 }
 
 //Check if player win
@@ -65,6 +65,7 @@ const checkWin = () => {
     ) {
         console.log('win')
         boardNode.classList.add('disabled')
+        btnClear.classList.add('animation-pulse')
         setCount()
     }
 }
@@ -79,7 +80,7 @@ const setCount = () => {
     }
 }
 
-btnReset.addEventListener('click', handleResetGame)
+btnClear.addEventListener('click', handleClearBoard)
 
 squareList.forEach((square) => {
     square.addEventListener('click', (e) => handleMakeMove(e.target))
