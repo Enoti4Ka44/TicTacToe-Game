@@ -7,9 +7,19 @@
     <title>Tic Tac Toe</title>
 </head>
 <body>
-    <script src="/scripts/index.js" defer ></script>
+    <script src="/scripts/index.js" defer></script>
+
+    <div class="overlay display-none">
+        <div class="modal">
+            <h2 class="subtitle"></h2>
+        </div>
+    </div>
 
     <div class="container">
+        <button class="btn btn-absolut" id="btnNewGame">
+            New game
+        </button>
+        <p class="turn-text">Turn: <span id="player" class="red">red</span></p>
         <h1 class="title">Tic <span>Tac</span> Toe </h1>
         <div class="grid-container">
             <div class="grid" id="board">

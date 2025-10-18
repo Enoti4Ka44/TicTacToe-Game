@@ -3,6 +3,10 @@ let btnClear = document.querySelector(`#btnClear`)
 let boardNode = document.querySelector(`#board`)
 let playerBlueCount = document.querySelector(`#playerBlue`)
 let playerRedCount = document.querySelector(`#playerRed`)
+let subtitleNode = document.querySelector(`.subtitle`)
+let modalOverlay = document.querySelector(`.overlay`)
+let currentPlayerNode = document.querySelector(`#player`)
+let btnNewGame = document.querySelector(`#btnNewGame`)
 
 let currentPlayer = true;
 let board = [
@@ -12,8 +16,16 @@ let board = [
 ]
 
 //Switch players
+const checkPlayer = () => {
+    return currentPlayer ? "red" : 'blue'
+}
+
 const switchPlayers = () => {
+    let classes = currentPlayerNode.classList
+
     currentPlayer = !currentPlayer
+    currentPlayerNode.innerHTML = checkPlayer()
+    classes.replace(classes[0], checkPlayer())
 }
 
 //Make move
@@ -54,6 +66,7 @@ const handleClearBoard = () => {
 
     boardNode.classList.remove('disabled')
     btnClear.classList.remove('animation-pulse')
+    modalOverlay.classList.add('display-none')
 }
 
 //Check if player win
@@ -70,11 +83,18 @@ const checkWin = () => {
         board[0][0] === board[1][1] && board[1][1] === board[2][2] && board[1][1] !== "" ||
         board[0][2] === board[1][1] && board[1][1] === board[2][0] && board[1][1] !== "" )
     {
-        console.log('win')
         boardNode.classList.add('disabled')
         btnClear.classList.add('animation-pulse')
         setCount()
+        setTimeout(showWinScreen, 500)
+
     }
+}
+
+//Show modal
+const showWinScreen = () => {
+    modalOverlay.classList.remove('display-none')
+    subtitleNode.innerHTML = `${currentPlayer ? "Blue" : "Red"} won!`
 }
 
 //Set wins count
@@ -87,7 +107,16 @@ const setCount = () => {
     }
 }
 
+//Start a new game
+const handleNewGame = () => {
+        playerBlueCount.textContent = 0
+        playerRedCount.textContent = 0
+
+        handleClearBoard()
+}
+
 btnClear.addEventListener('click', handleClearBoard)
+btnNewGame.addEventListener('click', handleNewGame)
 
 squareList.forEach((square) => {
     square.addEventListener('click', (e) => handleMakeMove(e.target))
