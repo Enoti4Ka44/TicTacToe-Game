@@ -11,14 +11,14 @@
 
     <div class="overlay display-none">
         <div class="modal">
-            <h2 class="subtitle"></h2>
+            <button class="close-btn" id="close-btn">
+                <img src="/assets/close.png" alt="">
+            </button>
+            <h2 class="subtitle"> <span id="player">BLUE</span> wins</h2>
         </div>
     </div>
 
     <div class="container">
-        <button class="btn btn-absolut" id="btnNewGame">
-            New game
-        </button>
         <p class="turn-text">Turn: <span id="player" class="red">red</span></p>
         <h1 class="title">Tic <span>Tac</span> Toe </h1>
         <div class="grid-container">
@@ -41,10 +41,14 @@
             :
             <span class="red" id="playerRed" >0</span>
         </div>
-
-        <button class="btn" id="btnClear">
-            AGAIN
-        </button>
+        <div class="btn-wrapper">
+            <button class="btn blue hover-blue" id="btnClear">
+                AGAIN
+            </button>
+            <button class="btn red hover-red" id="btnNewGame">
+                New game
+            </button>
+        </div>
     </div>
     
 </body>

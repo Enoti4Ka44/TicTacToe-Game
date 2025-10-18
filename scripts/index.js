@@ -30,17 +30,16 @@ const switchPlayers = () => {
 
 //Make move
 const handleMakeMove = (e) => {
-    const rowBoard = e.id[0]
-    const colBoard = e.id[1]
+    const [row, col] = e.id
 
-    if (board[rowBoard][colBoard] === "") {
+    if (board[row][col] === "") {
         if (currentPlayer) {
-            board[rowBoard][colBoard] = 'x'
+            board[row][col] = 'x'
             e.classList += ' red'
             e.innerHTML = 'X'
             
         } else {
-            board[rowBoard][colBoard] = 'o'
+            board[row][col] = 'o'
             e.classList += ' blue'
             e.innerHTML = 'O'
         }
@@ -86,7 +85,7 @@ const checkWin = () => {
         boardNode.classList.add('disabled')
         btnClear.classList.add('animation-pulse')
         setCount()
-        setTimeout(showWinScreen, 500)
+        setTimeout(showWinScreen, 400)
 
     }
 }
