@@ -125,7 +125,7 @@ img {
 
 .grid-container {
   width: 26rem;
-  margin: 40px auto;
+  margin: 20px auto;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 17px 50px;
   border-radius: 10px;
   overflow: hidden;
@@ -200,12 +200,10 @@ img {
 }
 
 .turn-text {
-  position: absolute;
-  left: 20px;
-  top: 20px;
-
   font-weight: 700;
   font-size: 24px;
+
+  margin-top: 20px;
 }
 
 @media (max-width: 780px) {
