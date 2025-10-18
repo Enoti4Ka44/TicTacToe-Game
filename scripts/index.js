@@ -1,12 +1,15 @@
 let squareList = document.querySelectorAll('.square')
-let btnClear = document.querySelector(`#btnClear`)
 let boardNode = document.querySelector(`#board`)
 let playerBlueCount = document.querySelector(`#playerBlue`)
 let playerRedCount = document.querySelector(`#playerRed`)
-let subtitleNode = document.querySelector(`.subtitle`)
-let modalOverlay = document.querySelector(`.overlay`)
 let currentPlayerNode = document.querySelector(`#player`)
+let winner = document.querySelector(`#player-winner`)
+let modalOverlay = document.querySelector(`.overlay`)
+let subtitleNode = document.querySelector(`.subtitle`)
+
+let btnClear = document.querySelector(`#btnClear`)
 let btnNewGame = document.querySelector(`#btnNewGame`)
+let btnCloseModal = document.querySelector(`#close-btn`)
 
 let currentPlayer = true;
 let board = [
@@ -26,6 +29,7 @@ const switchPlayers = () => {
     currentPlayer = !currentPlayer
     currentPlayerNode.innerHTML = checkPlayer()
     classes.replace(classes[0], checkPlayer())
+    console.log(currentPlayerNode)
 }
 
 //Make move
@@ -43,10 +47,11 @@ const handleMakeMove = (e) => {
             e.classList += ' blue'
             e.innerHTML = 'O'
         }
+        checkWin()
         switchPlayers();
     }
 
-    checkWin()
+    
 }
 
 //Reset the game
@@ -66,6 +71,7 @@ const handleClearBoard = () => {
     boardNode.classList.remove('disabled')
     btnClear.classList.remove('animation-pulse')
     modalOverlay.classList.add('display-none')
+    winner.classList = ""
 }
 
 //Check if player win
@@ -84,16 +90,19 @@ const checkWin = () => {
     {
         boardNode.classList.add('disabled')
         btnClear.classList.add('animation-pulse')
+
+
+        winner.innerHTML = checkPlayer().toUpperCase()
+        winner.classList.add(checkPlayer())
         setCount()
-        setTimeout(showWinScreen, 400)
+        setTimeout(handleModal, 400)
 
     }
 }
 
-//Show modal
-const showWinScreen = () => {
-    modalOverlay.classList.remove('display-none')
-    subtitleNode.innerHTML = `${currentPlayer ? "Blue" : "Red"} won!`
+//Open/Close modal
+const handleModal = () => {
+    modalOverlay.classList.toggle('active')
 }
 
 //Set wins count
@@ -116,6 +125,7 @@ const handleNewGame = () => {
 
 btnClear.addEventListener('click', handleClearBoard)
 btnNewGame.addEventListener('click', handleNewGame)
+btnCloseModal.addEventListener('click', handleModal)
 
 squareList.forEach((square) => {
     square.addEventListener('click', (e) => handleMakeMove(e.target))
